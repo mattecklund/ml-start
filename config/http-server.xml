@@ -1,0 +1,6 @@
+<http-server-properties xmlns="http://marklogic.com/manage">
+    <server-name>Library</server-name>
+    <root>/Users/mecklund/github/ml-start/src</root>
+    <port>8080</port>
+    <content-database>library-database</content-database>
+</http-server-properties>

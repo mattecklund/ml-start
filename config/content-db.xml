@@ -1,0 +1,3 @@
+<database-properties xmlns="http://marklogic.com/manage">
+    <database-name>library-database</database-name>
+</database-properties>
