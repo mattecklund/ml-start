@@ -14,7 +14,7 @@ declare function local:saveBook(
         element book {
             attribute category { $category },
             attribute id { $id },
-            element title { $title },
+            element bookTitle { $title },
             element author { $author },
             element year { $year },
             element price { $price }
