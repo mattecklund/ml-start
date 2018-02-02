@@ -8,18 +8,14 @@ xdmp:set-response-content-type("text/html"),
     <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
-    <div class="column left pushLeft">Left Column @ 15% width means that text will get wrapped around to the next line</div>
+    <div class="column left pushLeft"></div>
     <div class="column center pushLeft">
       {
-        for $book in fn:doc()
-        return
-        <section>
-          <h1>Book: </h1>
-          <p>{$book}</p>
-        </section>
+      for $book in fn:doc()
+      return <section><h1>Book Title: </h1><p>{$book}</p></section>
       }
     </div>
-    <div class="column right">Right Column @ auto overflow. Right Column @ auto overflow. Right Column @ auto overflow. Right Column @ auto overflow. Right Column @ auto overflow. Right Column @ auto overflow.</div>
+    <div class="column right"></div>
   </body>
 
 </html>)
