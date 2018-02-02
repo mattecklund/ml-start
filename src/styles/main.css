@@ -1,0 +1,33 @@
+body {
+    background-color: lightgrey;
+    width: 100%;
+}
+
+.column {
+    border-style: dotted;
+}
+
+.pushLeft {
+    float: left;
+}
+
+.left {
+    width: 15%;
+}
+
+.center {
+    width: 50%;
+}
+
+.right {
+    overflow: hidden;
+}
+
+section {
+    padding-left: 10px;
+}
+
+p {
+    color: darkslategrey;
+    padding-left: 10px;
+}
