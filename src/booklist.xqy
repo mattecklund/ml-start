@@ -98,8 +98,8 @@ xdmp:set-response-content-type("text/html"),
               <section class="book">
                 <h1 class="bookTitle">{$searchedBook/bookTitle}</h1>
                 <div class="bookDetails">
-                  <div>by: {$searchedBook/author}</div>
-                  <div>released: {$searchedBook/year}</div>
+                  <div>By: {$searchedBook/author}</div>
+                  <div>Released: {$searchedBook/year}</div>
                   <div>Category: {fn:data($searchedBook/@category)}</div>
                   <div>Price: ${$searchedBook/price}</div>
                 </div>
@@ -110,8 +110,8 @@ xdmp:set-response-content-type("text/html"),
                   <section class="book"><p>Actually Searched (default search value only, BUT it is returning multiple books!)</p>
                     <h1 class="bookTitle">{$book/bookTitle}</h1>
                     <div class="bookDetails">
-                      <div>by: {$book/author}</div>
-                      <div>released: {$book/year}</div>
+                      <div>By: {$book/author}</div>
+                      <div>Released: {$book/year}</div>
                       <div>Category: {fn:data($book/@category)}</div>
                       <div>Price: ${$book/price}</div>
                     </div>
@@ -129,8 +129,8 @@ xdmp:set-response-content-type("text/html"),
         <section class="book">
           <h1 class="bookTitle">{$book/bookTitle}</h1>
           <div class="bookDetails">
-            <div>by: {$book/author}</div>
-            <div>released: {$book/year}</div>
+            <div>By: {$book/author}</div>
+            <div>Released: {$book/year}</div>
             <div>Category: {fn:data($book/@category)}</div>
             <div>Price: ${$book/price}</div>
           </div>
