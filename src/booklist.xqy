@@ -9,6 +9,11 @@ declare function local:bookToSearch(
   $price as xs:string?,
   $category as xs:string?
   ) as xs:string {
+    xdmp:log($bookTitle),
+    xdmp:log($author),
+    xdmp:log($year),
+    xdmp:log($price),
+    xdmp:log($category), (:So, now I'm just logging to see where the disconnect is:)
     let $search as xs:string := "true"  (: Obviously I just need to use xs:boolean for the way I'm using it in the html, but I couldn't figure it out quickly :)
     let $searchedBook as element(book) :=
      element book {
@@ -18,7 +23,7 @@ declare function local:bookToSearch(
        element year { $year },
        element price { $price }
      }
-     return $search
+     return $search, xdmp:log($searchedBook) (:So, logging here shows that the values aren't actuall being assigned in the above lines. Why??:)
   };
 
 declare function local:searchBook($searchedBook as element(book)) as element(book)* {
@@ -40,13 +45,14 @@ declare variable $searchedBook as element(book) :=
 
 declare variable $search as xs:string? :=
     if (xdmp:get-request-method() eq "POST") then (
-        let $bookTitle as xs:string? := local:sanitizeInput(xdmp:get-request-field("bookTitle"))
-        let $author as xs:string? := local:sanitizeInput(xdmp:get-request-field("author"))
-        let $year as xs:string? := local:sanitizeInput(xdmp:get-request-field("year"))
-        let $price as xs:string? := local:sanitizeInput(xdmp:get-request-field("price"))
-        let $category as xs:string? := local:sanitizeInput(xdmp:get-request-field("category"))
-        return
-            local:bookToSearch($bookTitle, $author, $year, $price, $category)
+      xdmp:log("Defining POST inputs as xs:strings"), (:So, now I'm just logging to see where the disconnect is:)
+      let $bookTitle as xs:string? := local:sanitizeInput(xdmp:get-request-field("bookTitle"))
+      let $author as xs:string? := local:sanitizeInput(xdmp:get-request-field("author"))
+      let $year as xs:string? := local:sanitizeInput(xdmp:get-request-field("year"))
+      let $price as xs:string? := local:sanitizeInput(xdmp:get-request-field("price"))
+      let $category as xs:string? := local:sanitizeInput(xdmp:get-request-field("category"))
+      return
+        local:bookToSearch($bookTitle, $author, $year, $price, $category)
     ) else ();
 
 (: build the html :)
@@ -77,7 +83,7 @@ xdmp:set-response-content-type("text/html"),
                 }
             </select>
           </div>
-          <div><input type="submit" value="Save"/></div>
+          <div><input type="submit" value="Search"/></div>
         </fieldset>
       </form>
       <div>
