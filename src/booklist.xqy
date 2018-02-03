@@ -27,26 +27,31 @@ declare function local:bookToSearch(
   };
 
 declare function local:searchBook($searchedBook as element(book)) as element(book)* {
-  cts:search(//book, cts:element-value-query(xs:QName("bookTitle"), fn:data($searchedBook/bookTitle), ("wildcarded", "case-insensitive")))
-};
+  cts:search(//book, cts:element-value-query(xs:QName("author"), fn:data($searchedBook/author), ("wildcarded", "case-insensitive")))
+};  (:Obviously I just ripped this off from the xquery tutorial on ML website. I have some idea what it is doing, but I lack fundamental knowledge of xquery data types:)
+(:I could only figure out how to do it by one value, so I chose author since I have multiple books by the same author in the db:)
 
 declare function local:sanitizeInput($chars as xs:string?) {
-    fn:replace($chars,"[\]\[<>{}\\();%\+]","")
+    fn:replace($chars,"[\]\[<>{}\\();%\+]","") (:Obviously I just ripped this off from the add-boox.xqy:)
 };
 
 declare variable $searchedBook as element(book) :=
   element book {
-    attribute category {"CATEGORY"},
-    element bookTitle {"default title"},
-    element author {"author"},
-    element year {1900},
-    element price {0}
+    (:attribute category {"FICTION"},:)
+    attribute category {},
+    (:element bookTitle {"Ender's Game"},:)
+    element bookTitle {},
+    element author {"Orson Scott Card"},
+    (:element year {1985},:)
+    element year {},
+    (:element price {15.95}:)
+    element price {}
        };
 
 declare variable $search as xs:string? :=
     if (xdmp:get-request-method() eq "POST") then (
       xdmp:log("Defining POST inputs as xs:strings"), (:So, now I'm just logging to see where the disconnect is:)
-      let $bookTitle as xs:string? := local:sanitizeInput(xdmp:get-request-field("bookTitle"))
+      let $bookTitle as xs:string? := local:sanitizeInput(xdmp:get-request-field("bookTitle")) (:Obviously I just ripped this off from the add-boox.xqy:)
       let $author as xs:string? := local:sanitizeInput(xdmp:get-request-field("author"))
       let $year as xs:string? := local:sanitizeInput(xdmp:get-request-field("year"))
       let $price as xs:string? := local:sanitizeInput(xdmp:get-request-field("price"))
@@ -64,7 +69,7 @@ xdmp:set-response-content-type("text/html"),
     <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
-    <div class="header">HEADER GOES HERE</div>
+    <div class="header">BOOK STORE</div>
     <div class="searchBar left column">
       <form name="bookSearch" action="booklist.xqy" method="post" id="searchForm">
         <fieldset>
@@ -89,7 +94,7 @@ xdmp:set-response-content-type("text/html"),
       <div>
         {
           if (fn:exists($search)) then (
-            <div class="removeMe">
+            <div class="removeMe "><h2>Default Value Book</h2>
               <section class="book">
                 <h1 class="bookTitle">{$searchedBook/bookTitle}</h1>
                 <div class="bookDetails">
@@ -101,7 +106,16 @@ xdmp:set-response-content-type("text/html"),
               </section>
               {
                 for $book in local:searchBook($searchedBook)
-                return $book
+                return
+                  <section class="book"><p>Actually Searched (default search value only, BUT it is returning multiple books!)</p>
+                    <h1 class="bookTitle">{$book/bookTitle}</h1>
+                    <div class="bookDetails">
+                      <div>by: {$book/author}</div>
+                      <div>released: {$book/year}</div>
+                      <div>Category: {fn:data($book/@category)}</div>
+                      <div>Price: ${$book/price}</div>
+                    </div>
+                  </section>
               }
             </div>
           ) else ()
