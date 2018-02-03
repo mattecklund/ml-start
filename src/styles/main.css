@@ -5,6 +5,11 @@ html {
     box-sizing: inherit;
 }
 
+.header {
+    margin: 10 10 30 10;
+    text-align: center;
+}
+
 .column {
     float: left;
     padding: 0 20 0 20
@@ -22,12 +27,27 @@ html {
 .searchBar {
 }
 
+#searchForm {
+    padding-top: ;
+}
+
+#searchForm label {
+    padding-left:5px;
+    width: 100px;
+    text-transform: uppercase;
+    display: inline-block
+}
+
+.searchkey {
+    /*width: 50;*/
+}
+
 .bookList {
 }
 
 .book {
     float: left;
-    padding: 10 20 5 0;
+    padding: 0 20 5 0;
     height: 175px;
 
 }
@@ -35,7 +55,7 @@ html {
 .bookTitle {
     line-height: 1em;
     width: 250px;
-    /*margin-bottom: 0;*/
+    margin: 0;
 }
 
 .bookDetails {

@@ -9,7 +9,7 @@ declare function local:bookToSearch(
   $price as xs:string?,
   $category as xs:string?
   ) as xs:string {
-    let $search as xs:string := "true"  (: Obviously I need to use xs:boolean, but I couldn't figure it out quickly :)
+    let $search as xs:string := "true"  (: Obviously I just need to use xs:boolean for the way I'm using it in the html, but I couldn't figure it out quickly :)
     let $searchedBook as element(book) :=
      element book {
        attribute category { $category },
@@ -32,7 +32,7 @@ declare function local:sanitizeInput($chars as xs:string?) {
 declare variable $searchedBook as element(book) :=
   element book {
     attribute category {"CATEGORY"},
-    element bookTitle {"title"},
+    element bookTitle {"default title"},
     element author {"author"},
     element year {1900},
     element price {0}
@@ -58,16 +58,17 @@ xdmp:set-response-content-type("text/html"),
     <link rel="stylesheet" href="styles/main.css"/>
   </head>
   <body>
+    <div class="header">HEADER GOES HERE</div>
     <div class="searchBar left column">
-      <form name="bookSearch" action="booklist.xqy" method="post">
+      <form name="bookSearch" action="booklist.xqy" method="post" id="searchForm">
         <fieldset>
           <legend>Search for a Book!</legend>
-          <div><label for="bookTitle">Title</label><input type="text" id="bookTitle" name="bookTitle"></input></div>
-          <div><label for="author">Author</label><input type="text" id="author" name="author"/></div>
-          <div><label for="year">Year</label><input type="text" id="year" name="year"/></div>
-          <div><label for="price">Price</label><input type="text" id="price" name="price"/></div>
+          <div><label for="bookTitle" class="searchKey">Title</label><input type="text" id="bookTitle" name="bookTitle"></input></div>
+          <div><label for="author" class="searchKey">Author</label><input type="text" id="author" name="author"/></div>
+          <div><label for="year" class="searchKey">Year</label><input type="text" id="year" name="year"/></div>
+          <div><label for="price" class="searchKey">Price</label><input type="text" id="price" name="price"/></div>
           <div>
-            <label for="category">Category</label>
+            <label for="category" class="searchKey">Category</label>
             <select name="category" id="category">
               <option/>
                 {
