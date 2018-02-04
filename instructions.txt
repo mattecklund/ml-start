@@ -1,0 +1,18 @@
+Instructions for testing
+
+1. Be sure to load some books with the same author and/or other fields.
+2. Apparently the ML wildcarded search is a little different that what I would think, so try it.
+  It does work, but less intuitively.
+3. Search for all 5 fields. You will notice that the "category" field doesn't work.
+  That's because it is an attribute on the searched element and not a value. Time constraint...
+4. Be sure to navigate to booklist-multisearch.xqy.
+  Notice that search just doesn't work. BUT... parts of it do.
+  I couldn't get it to work, so I swapped this whole section out and swapped in a less "fun" search process.
+  This was done to submit in time. I have been keeping snippets of code on a text document so I could swap in stuff as needed.
+
+
+
+Improvements:
+1. Search on element category
+2. Improve displayed search fields in drop down (time constraint)
+3. On multi-field search, get it to actually work...
