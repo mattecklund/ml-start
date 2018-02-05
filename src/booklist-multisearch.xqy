@@ -71,7 +71,7 @@ xdmp:set-response-content-type("text/html"),
   <body>
     <div class="header">BOOK STORE</div>
     <div class="searchBar left column">
-      <form name="bookSearch" action="booklist.xqy" method="post" id="searchForm">
+      <form name="bookSearch" action="booklist-multisearch.xqy" method="post" id="searchForm">
         <fieldset>
           <legend>Search for a Book!</legend>
           <div><label for="bookTitle" class="searchKey">Title</label><input type="text" id="bookTitle" name="bookTitle"></input></div>
