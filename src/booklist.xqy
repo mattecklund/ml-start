@@ -33,7 +33,6 @@ xdmp:set-response-content-type("text/html"),
           <div>
             <label for="searchField" class="searchKey">Field</label>
             <select name="searchField" id="searchField">
-              <option/>
                 {
                   for $c in ('bookTitle','author','year','price','category') (:Ok, seriously, how do you put a switch or if/else statement in FLWOR??? I've tried a few different things...:)
                   (:where if($c = "bookTitle") then let $label := "Title":) (: else (continue?):)
